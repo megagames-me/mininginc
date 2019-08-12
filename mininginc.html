@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+    <!--Made by Megagames.me. Hi inspectors!!!!!!!!!!!!!!!!!!!!-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Mining, Inc.</title>
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Patua+One');
+    #minebutton {
+        position: absolute;
+        font-family: "Patua One", Cursive;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50%;
+        height: 100px;
+        width: 100px;
+    }
+    .mwrapper {
+        text-align: center;
+    }
+    #materials {
+        font-family: "Patua One", Cursive;
+        width: 20%;
+        background-color: rgb(200, 200, 200);
+        border-color: red;
+        border-style: ridge;
+        border-width: 4px;
+
+        height: 98%; /* Full-height: remove this if you want "auto" height */
+        width: 20%; /* Set the width of the sidebar */
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        left: 0;
+         /* Black */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 20px;
+        overflow-y: scroll;
+        padding: 5px;
+        
+    }
+    #btext {
+        font-family: "Patua One", Cursive;
+        
+        text-align: center;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        
+    }
+    #block {
+        position: absolute;
+        width: 100px;
+        font-family: "Patua One", Cursive;
+        height: 100px;
+        
+        background-color: grey;
+        border: 4px solid black;
+        text-align: center;
+        top:7vh;
+        right: 10px;
+        
+        
+    }
+    h1, h2, h3, p {
+        font-family: "Patua One", Cursive;
+    }
+    #btxt {
+        position: absolute inherit;
+        text-align: center;
+        line-height: 50px;
+    }
+    .slidecontainer {
+    position: absolute;
+    width: 20%;
+    top: 100%;
+    right: 0%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.shop {
+    font-family: "Patua One", Cursive;
+        width: 20%;
+        background-color: rgb(200, 200, 200);
+        border-color: red;
+        border-style: ridge;
+        border-width: 4px;
+        position: absolute;
+    width: 20%;
+    top: 0%;
+    right: 0%;
+    height: 100%;
+    padding: 5px;
+}
+.sellCon {
+    position: inherit;
+    top: 150px;
+}
+.sellbs {
+    position: inherit absolute;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="materials">
+    <h1>Materials</h1>
+    <h2>Tried to cheat?: <span id="cheat">0</span>.<br> 0 = No, 1 = Yes.</h2>
+    <h2>Money: $<span id="money">0</span>.</h2>
+	<h2>Stone in your inventory now: <span id="stonei">0</span>.</h2>
+	<h2>All the stone you've ever mined: <span id="stone">0</span>.</h2>
+	<h2>Silver in your inventory now: <span id="silveri">0</span>.</h2>
+	<h2>All the silver you've ever mined: <span id="silver">0</span>.</h2>
+	<h2>Gold in your inventory now: <span id="goldi">0</span>.</h2>
+	<h2>All the gold you've ever mined: <span id="gold">0</span>.</h2>
+	<h2>Platinum in your inventory now: <span id="platinumi">0</span>.</h2>
+	<h2>All the platinum you've ever mined: <span id="platinum">0</span>.</h2>
+	<h2>Diamond in your inventory now: <span id="diamondi">0</span>.</h2>
+	<h2>All the diamond you've ever mined: <span id="diamond">0</span>.</h2>
+	
+	</div>
+	<div class="slidecontainer">
+	    <p>Width of materials sidebar</p>
+  <input type="range" min="0" max="30" value="20" class="slider" id="myRange">
+  <p>Width: <span id="width">20% of screen</span></p>
+  
+</div>
+	<div class="mwrapper">
+	<button id="minebutton" onclick="hello()">Mine!</button>
+	</div>
+	<div class="shop">
+	    <h3 id="btext">The block you are mining &darr;</h3>
+	    <div id="block">
+	        <h3 id="btxt">Stone</h3>
+	    </div>
+	    <div class="sellCon">
+	    <div class="sell">
+	        <h1>Sell your materials</h1>
+	        <p><span id="sts"></span>Stone: $1. <button onclick="stoneSellAll()" class="sellbs">Sell all</button> <button onclick="stoneSell1()" class="sellbs">Sell 1</button></p>
+	        <p><span id="sits"></span>Silver: $10. <button onclick="silverSellAll()" class="sellbs">Sell all</button> <button onclick="silverSell1()" class="sellbs">Sell 1</button></p>
+	    </div>
+	    <div>
+	        <h1>Buy</h1>
+	        <p><span id="clicker"></span><span id="clickertxt">Buy Clicker</span>:  $10 +1 BpS</p>
+	    </div>
+	    </div>
+	</div>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="http://www.google.com/jsapi"></script>
+<script>
+    google.load("jqueryui", "1.5.2");
+</script>
+	<script>
+	////////////////
+	// JavaScript //
+	////////////////
+	//Blocks: Stone, Silver, Gold, Platinum, Diamond, Alexandrite, Amethyst, Unobtanium, Emerald, The Ultimate Block. #Of blocks is 10. 
+	//defining the vars.
+    var stonei = 0;
+    var deepness = 0;
+    var stone = 0; 
+    var silveri = 0;
+    var silver = 0;
+    var goldi = 0;
+    var gold = 0;
+    var platinumi = 0;
+    var platinum = 0;
+    var diamondi = 0;
+    var diamond = 0;
+    var alexandritei = 0;
+    var alexandrite = 0;
+    var amethysti = 0;
+    var amethyst = 0;
+    var unobtaniumi = 0;
+    var unobtanium = 0;
+    var emeraldi = 0;
+    var emerald = 0;
+    var tubi = 0;
+    var tub = 0;
+    var blockN;
+    var block = 0;
+    var money = 0;
+    var stoneSold = 0;
+    var silverSold = 0;
+    var goldSold = 0;
+    var clickers = 0;
+    var moneyEver = 0;
+    var BpS = 0;
+    //defining element to shorten code later
+    var blockEl = document.getElementById("block");
+    var btxtEL = document.getElementById("btxt");
+    var moneyEl = document.getElementById("money"); 
+    //changing what the 'Block you are mining' says
+    var findBlock = function(b) {
+        if (b === 0) {
+            blockEl.style.backgroundColor = "grey";
+            btxt.innerHTML = "Stone";
+            blockN = "stone";
+        }
+        else if (b === 1) {
+            blockEl.style.backgroundColor = "silver";
+            btxt.innerHTML = "Silver";
+            blockN = "silver";
+        }
+        else if (b === 2) {
+            blockEl.style.backgroundColor = "gold";
+            btxt.innerHTML = "Gold";
+            blockN = "gold";
+        }
+        else if (b === 3) {
+            blockEl.style.backgroundColor = "rgb(90, 89, 89)";
+            btxt.innerHTML = "Platinum"
+            blockN = "platinum";
+        }
+        else if (b === 4) {
+            blockEl.style.backgroundColor = "rgb(185, 242, 255)";
+            btxt.innerHTML = "Diamond"
+            blockN = "diamond";
+        }
+        else if (b <= 10) {
+            btxt.innerHTML = "Not coded yet";
+        }
+        //hehe
+        else {
+            btxt.innerHTML = "WHAAAA?????????";
+        }
+    }
+    //adds materials to the left sidebar
+    var createBlock = function(b) {
+        if (b === 0) {
+            stonei += 1;
+    	    stone += 1;
+            document.getElementById("stonei").innerHTML = stonei;
+    	    document.getElementById("stone").innerHTML = stone;
+    	    
+        }
+        else if (b === 1) {
+            silveri += 1;
+    	    silver += 1;
+            document.getElementById("silveri").innerHTML = silveri;
+    	    document.getElementById("silver").innerHTML = silver;
+        }
+        else if (b === 2) {
+            goldi += 1;
+    	    gold += 1;
+           document.getElementById("goldi").innerHTML = goldi;
+    	    document.getElementById("gold").innerHTML = gold;
+        }
+        else if (b === 3) {
+            platinumi += 1;
+    	    platinum += 1;
+            document.getElementById("platinumi").innerHTML = platinumi;
+    	    document.getElementById("platinum").innerHTML = platinum;
+    	    
+        }
+        else if (b === 4) {
+            diamondi += 1;
+    	    diamond += 1;
+            document.getElementById("diamondi").innerHTML = diamondi;
+    	    document.getElementById("diamond").innerHTML = diamond;
+    	    
+        }
+        //not coded rest
+        
+    }
+    //From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    //for finding the block when you mine
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+    //when you click the mine button it does this
+    var hello = function() { 
+        
+        if (deepness === stone + silver + gold + platinum + diamond && stone >= stonei && silver >= silveri && gold >= goldi && platinum >= platinumi && diamond >= diamondi && stoneSold == stone - stonei &&  moneyEver == money + clickers &&typeof hsjsahjkd === 'undefined' || hsjsahjkd === null) {
+    	if (deepness <= 50) {
+    	    block = 0;
+    	    findBlock(block);
+    	    deepness += 1;
+    	    createBlock(block)
+    	}
+    	else if (deepness >= 50, deepness < 150) {
+    	    block = getRandomInt(0, 2);
+    	    
+    	    findBlock(block);
+    	    
+    	    deepness += 1;
+    	    createBlock(block)
+
+    	}
+    	else if (deepness >= 150, deepness < 250) {
+    	    block = getRandomInt(0, 3);
+    	    
+    	    findBlock(block);
+    	    
+    	    deepness += 1;
+    	    createBlock(block)
+
+    	}
+    	else if (deepness >= 250, deepness < 350) {
+    	    block = getRandomInt(0, 4);
+    	    
+    	    findBlock(block);
+    	    
+    	    deepness += 1;
+    	    createBlock(block)
+
+    	}
+    	else if (deepness >= 350) {
+    	    block = getRandomInt(0, 5);
+    	    
+    	    findBlock(block);
+    	    
+    	    deepness += 1;
+    	    createBlock(block)
+
+    	}
+    	
+        }
+        else {
+            btxt.innerHTML = "Cheater.";
+             stonei = 0;
+             deepness = 0;
+             stone = 0; 
+             silveri = 0;
+             silver = 0;
+             goldi = 0;
+             gold = 0;
+             platinumi = 0;
+             platinum = 0;
+             diamondi = 0;
+             diamond = 0;
+             alexandritei = 0;
+             alexandrite = 0;
+             amethysti = 0;
+             amethyst = 0;
+             unobtaniumi = 0;
+             unobtanium = 0;
+             emeraldi = 0;
+             emerald = 0;
+             tubi = 0;
+             tub = 0;
+             stoneSold = 0;
+             silverSold = 0;
+             goldSold = 0;
+             clickers = 0;
+             moneyEver = 0;
+             BpS = 0;
+             console.log("You cheated. The game restarted.")
+             if (typeof hsjsahjkd == 'undefined') {
+                 var hsjsahjkd = 1;
+             }
+             else {
+                 hsjsahjkd += 1;
+             }
+             
+             
+             document.getElementById("cheat").innerHTML = hsjsahjkd;
+        }
+    	
+    	
+    }
+        //from stackoverflow. A coders happy place ;). For the slider to define the size of the left sidebar.
+        let slider = document.querySelector('[type=range]');
+        let div = document.querySelector('#materials');
+        let span = document.querySelector('#width');
+        
+        slider.addEventListener('input', e => {
+        div.style.width = e.target.value + '%';
+        span.innerHTML = e.target.value + '% of screen';
+        })
+        
+        //stone selling functions
+        var clearSts = function() {
+            $("#sts").text("");
+        }
+        var stoneSellAll = function() {
+            if (stonei > 0) {
+                money += stonei * 1;
+                moneyEver += stonei * 1;
+                stoneSold += stonei;
+                stonei = 0;
+                document.getElementById("stonei").innerHTML = stonei;
+                moneyEl.innerHTML = money;
+            }
+            else {
+                $("#sts").text("Not enough stone. ");
+                setTimeout(clearSts, 1000);
+            }
+        }
+        var stoneSell1 = function() {
+            if (stonei > 0) {
+                money += 1;
+                moneyEver += 1;
+                stoneSold += 1;
+                stonei -= 1;
+                document.getElementById("stonei").innerHTML = stonei;
+                moneyEl.innerHTML = money;
+            }
+            else {
+                $("#sts").text("Not enough stone. ");
+                setTimeout(clearSts, 1000);
+            }
+        }
+        //silver selling functions
+        var clearSits = function() {
+            $("#sits").text("");
+        }
+        var silverSellAll = function() {
+            if (silveri > 0) {
+                money += silveri * 10;
+                moneyEver += silveri * 10;
+                silverSold += silveri;
+                silveri = 0;
+                document.getElementById("silveri").innerHTML = silveri;
+                moneyEl.innerHTML = money;
+            }
+            else {
+                $("#sits").text("Not enough silver. ");
+                setTimeout(clearSits, 1000);
+            }
+        }
+        var silverSell1 = function() {
+            if (silveri > 0) {
+                money += 10;
+                moneyEver += 10;
+                silverSold += 1;
+                silveri -= 1;
+                document.getElementById("silveri").innerHTML = silveri;
+                moneyEl.innerHTML = money;
+            }
+            else {
+                $("#sits").text("Not enough silver. ");
+                setTimeout(clearSits, 1000);
+            }
+        }
+        //buy
+        //for clickers
+        
+        var cworker = function () {
+            if (money >= startingCostCworker) {
+                startingCostCworker += Math.ceil(10%);
+                
+                if (clickers >= 1) {
+                    $("#cworkertxt").text = "Upgrade clicker:  $" + startingCostCworker + " +1 BpS, BpS from this is " + cworkerBps;
+                }
+            }
+            else {
+                $("")
+            }
+        }
+        
+    </script>
+</body>
+</html>
