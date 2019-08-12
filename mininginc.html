@@ -172,7 +172,7 @@
 	    </div>
 	    <div>
 	        <h1>Buy</h1>
-	        <p><span id="clicker"></span><span id="clickertxt">Buy Clicker</span>:  $10 +1 BpS</p>
+	        <p><span id="cwts"></span><span id="cworkertxt">Buy Child Worker</span>:  $10 +1 BpS</p>
 	    </div>
 	    </div>
 	</div>
@@ -479,7 +479,8 @@
                 }
             }
             else {
-                $("")
+                $("#cwts").text("Not enough money. ")
+                setTimeout($("#cwts").text(""), 1000)
             }
         }
         
