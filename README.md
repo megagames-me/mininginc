@@ -1,9 +1,6 @@
 # mininginc
 The code for the game, Mining, Inc. in prerelease. You can play it at megagames.me/games/miningscreen.html. It is not suitable for mobile and also may be unstable or not work.
 # changelog
-##################################################
-# CHANGELOG FOR MINING, INC. A MEGAGAMES.ME GAME #
-##################################################
 23/07/19: 0.0.1devb230719 PRE-RELEASE:
     Game released.
     Button for mining, random materials depending on your deepness.
